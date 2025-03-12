@@ -25,11 +25,9 @@ if image_file is not None:
             data={"apikey": OCR_API_KEY, "language": "auto", "OCREngine":2}
         )
     
-    # Process response
+    
+    result = response.json()
     if response.status_code == 200 and not result.get('IsErroredOnProcessing'):
-        
-            
-        result = response.json()
         extracted_text = result["ParsedResults"][0]["ParsedText"]
         
         if extracted_text.strip():
