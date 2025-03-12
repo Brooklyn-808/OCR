@@ -48,12 +48,12 @@ st.title("BetterVision: Image to Text & Speech")
 
 
 ocr_language = st.selectbox(
-    "Select OCR Language", 
+    "Select Optical Character Recognition Language", 
     list(ocr_languages.keys())
 )
 
 tts_language = st.selectbox(
-    "Select TTS Language", 
+    "Select Text To Speech Language", 
     list(tts_languages.keys())
 )
 
