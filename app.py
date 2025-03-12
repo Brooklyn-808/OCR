@@ -64,3 +64,5 @@ if image_file is not None:
             st.error("No text found in the image.")
     else:
         st.error("Error processing image. Try again.")
+        st.json(result)  # This will display the full response in Streamlit
+
