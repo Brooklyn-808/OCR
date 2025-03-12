@@ -10,9 +10,9 @@ OCR_URL = "https://api.ocr.space/parse/image"
 
 
 ocr_languages = {
+    "English": "eng",
     "Chinese (Simplified)": "chs",
     "Chinese (Traditional)": "cht",
-    "English": "eng",
     "German": "ger",
     "AUTODETECT LANGUAGE": "auto"
 }
