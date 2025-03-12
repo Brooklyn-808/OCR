@@ -8,26 +8,37 @@ load_dotenv()
 OCR_API_KEY = os.getenv("OCR_SPACE_API_KEY")
 OCR_URL = "https://api.ocr.space/parse/image"
 
+def ocr_space_file(filename, overlay=False, language='auto'):
+    payload = {
+        'isOverlayRequired': overlay,
+        'apikey': OCR_API_KEY,
+        'language': language,
+        'OCREngine': 2
+    }
+    with open(filename, 'rb') as f:
+        response = requests.post(
+            'https://api.ocr.space/parse/image',
+            files={filename: f},
+            data=payload,
+        )
+    return response.json()
+
 st.title("Live Capture: Image to Text & Speech")
 
 # Use Streamlit's built-in camera input
 image_file = st.camera_input("Take a photo")
 
 if image_file is not None:
-    # Read image bytes
-    image_bytes = image_file.getvalue()
+    # Save image temporarily
+    temp_filename = "temp_image.jpg"
+    with open(temp_filename, "wb") as f:
+        f.write(image_file.getvalue())
     
     # Send image to OCR.space API
     with st.spinner("Extracting text..."):
-        response = requests.post(
-            OCR_URL,
-            files={"file": image_bytes},
-            data={"apikey": OCR_API_KEY, "language": "auto", "OCREngine":2}
-        )
+        result = ocr_space_file(temp_filename, overlay=False, language='auto')
     
-    
-    result = response.json()
-    if response.status_code == 200 and not result.get('IsErroredOnProcessing'):
+    if result and not result.get('IsErroredOnProcessing'):
         extracted_text = result["ParsedResults"][0]["ParsedText"]
         
         if extracted_text.strip():
@@ -48,6 +59,7 @@ if image_file is not None:
             
             # Cleanup
             os.remove(audio_file)
+            os.remove(temp_filename)
         else:
             st.error("No text found in the image.")
     else:
