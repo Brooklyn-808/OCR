@@ -10,14 +10,8 @@ OCR_URL = "https://api.ocr.space/parse/image"
 
 # Full list of languages for OCR and TTS
 ocr_languages = {
-    "Arabic": "ara",
-    "Bulgarian": "bul",
     "Chinese (Simplified)": "chs",
     "Chinese (Traditional)": "cht",
-    "Croatian": "hrv",
-    "Czech": "cze",
-    "Danish": "dan",
-    "Dutch": "dut",
     "English": "eng",
     "Finnish": "fin",
     "French": "fre",
@@ -27,9 +21,6 @@ ocr_languages = {
     "Korean": "kor",
     "Italian": "ita",
     "Japanese": "jpn",
-    "Polish": "pol",
-    "Portuguese": "por",
-    "Russian": "rus",
     "Slovenian": "slv",
     "Spanish": "spa",
     "Swedish": "swe",
