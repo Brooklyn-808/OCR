@@ -13,45 +13,15 @@ ocr_languages = {
     "Chinese (Simplified)": "chs",
     "Chinese (Traditional)": "cht",
     "English": "eng",
-    "Finnish": "fin",
-    "French": "fre",
     "German": "ger",
-    "Greek": "gre",
-    "Hungarian": "hun",
-    "Korean": "kor",
-    "Italian": "ita",
-    "Japanese": "jpn",
-    "Slovenian": "slv",
-    "Spanish": "spa",
-    "Swedish": "swe",
-    "Thai": "tha",
-    "Turkish": "tur",
-    "Ukrainian": "ukr",
-    "Vietnamese": "vnm",
     "AUTODETECT LANGUAGE": "auto"
 }
 
 tts_languages = {
     "English": "en",
-    "Spanish": "es",
-    "French": "fr",
     "German": "de",
-    "Italian": "it",
-    "Portuguese": "pt",
-    "Russian": "ru",
-    "Japanese": "ja",
-    "Korean": "ko",
-    "Arabic": "ar",
-    "Bulgarian": "bg",
     "Chinese (Simplified)": "zh",
-    "Chinese (Traditional)": "zh-tw",
-    "Greek": "el",
-    "Hungarian": "hu",
-    "Polish": "pl",
-    "Swedish": "sv",
-    "Turkish": "tr",
-    "Ukrainian": "uk",
-    "Vietnamese": "vi"
+    "Chinese (Traditional)": "zh-tw"
 }
 
 # Function for OCR space API
