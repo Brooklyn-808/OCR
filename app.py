@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-OCR_API_KEY = os.getenv("OCR_SPACE_API_KEY")
+OCR_API_KE = os.getenv("OCR_SPACE_API_KEY")
 OCR_URL = "https://api.ocr.space/parse/image"
 
 
@@ -28,7 +28,7 @@ tts_languages = {
 def ocr_space_file(filename, overlay=False, language='eng'):
     payload = {
         'isOverlayRequired': overlay,
-        'apikey': OCR_API_KEY,
+        'apikey': OCR_API_KE,
         'language': language,
         'OCREngine': 2
     }
@@ -58,7 +58,7 @@ tts_language = st.selectbox(
 )
 
 
-image_file = st.camera_input("Take a photo")
+image_file = st.camera_input("Take a photo to detect text")
 
 if image_file is not None:
     temp_filename = "temp_image.jpg"
