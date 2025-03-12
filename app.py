@@ -8,7 +8,7 @@ load_dotenv()
 OCR_API_KEY = os.getenv("OCR_SPACE_API_KEY")
 OCR_URL = "https://api.ocr.space/parse/image"
 
-# Full list of languages for OCR and TTS
+
 ocr_languages = {
     "Chinese (Simplified)": "chs",
     "Chinese (Traditional)": "cht",
@@ -24,7 +24,7 @@ tts_languages = {
     "Chinese (Traditional)": "zh-tw"
 }
 
-# Function for OCR space API
+
 def ocr_space_file(filename, overlay=False, language='eng'):
     payload = {
         'isOverlayRequired': overlay,
@@ -39,11 +39,14 @@ def ocr_space_file(filename, overlay=False, language='eng'):
             data=payload,
         )
     return response.json()
+st.set_page_config(
+    page_title="BetterVision", 
+    page_icon="📷" 
+)
 
-# Streamlit interface
-st.title("Live Capture: Image to Text & Speech")
+st.title("BetterVision: Image to Text & Speech")
 
-# Language selection for OCR and TTS
+
 ocr_language = st.selectbox(
     "Select OCR Language", 
     list(ocr_languages.keys())
@@ -54,16 +57,15 @@ tts_language = st.selectbox(
     list(tts_languages.keys())
 )
 
-# Use Streamlit's built-in camera input
+
 image_file = st.camera_input("Take a photo")
 
 if image_file is not None:
-    # Save image temporarily
     temp_filename = "temp_image.jpg"
     with open(temp_filename, "wb") as f:
         f.write(image_file.getvalue())
     
-    # Send image to OCR.space API
+
     with st.spinner("Extracting text..."):
         result = ocr_space_file(temp_filename, overlay=False, language=ocr_languages[ocr_language])
     
@@ -74,23 +76,23 @@ if image_file is not None:
             st.subheader("Extracted Text:")
             st.text_area("", extracted_text, height=200)
             
-            # Convert text to speech in selected language
+
             tts = gTTS(text=extracted_text, lang=tts_languages[tts_language])
             audio_file = "output.mp3"
             tts.save(audio_file)
             
-            # Play audio
+
             st.audio(audio_file, format="audio/mp3")
             
-            # Provide download link
+
             with open(audio_file, "rb") as f:
                 st.download_button("Download Audio", f, file_name="speech.mp3", mime="audio/mp3")
             
-            # Cleanup
+
             os.remove(audio_file)
             os.remove(temp_filename)
         else:
             st.error("No text found in the image.")
     else:
         st.error("Error processing image. Try again.")
-        st.json(result)  # This will display the full response in Streamlit
+        st.json(result)
