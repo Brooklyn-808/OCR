@@ -92,7 +92,7 @@ if image_file is not None:
             os.remove(audio_file)
             os.remove(temp_filename)
         else:
-            st.error("No text found in the image.")
+            st.error("No text found in the image, sorry")
     else:
         st.error("Error processing image. Try again.")
         st.json(result)
