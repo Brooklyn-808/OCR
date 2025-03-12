@@ -4,9 +4,11 @@ from gtts import gTTS
 import os
 import cv2
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
+from dotenv import load_dotenv
 
-
+load_dotenv()
 OCR_API_KEY = os.getenv("OCR_SPACE_API_KEY")
+
 OCR_URL = "https://api.ocr.space/parse/image"
 
 st.title("Live Capture: Image to Text & Speech")
