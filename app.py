@@ -22,11 +22,13 @@ if image_file is not None:
         response = requests.post(
             OCR_URL,
             files={"file": image_bytes},
-            data={"apikey": OCR_API_KEY, "language": "eng"}
+            data={"apikey": OCR_API_KEY, "language": "auto", "OCREngine":2}
         )
     
     # Process response
-    if response.status_code == 200:
+    if response.status_code == 200 and not result.get('IsErroredOnProcessing'):
+        
+            
         result = response.json()
         extracted_text = result["ParsedResults"][0]["ParsedText"]
         
