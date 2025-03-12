@@ -8,7 +8,7 @@ load_dotenv()
 OCR_API_KEY = os.getenv("OCR_SPACE_API_KEY")
 OCR_URL = "https://api.ocr.space/parse/image"
 
-def ocr_space_file(filename, overlay=False, language='auto'):
+def ocr_space_file(filename, overlay=False, language='eng'):
     payload = {
         'isOverlayRequired': overlay,
         'apikey': OCR_API_KEY,
