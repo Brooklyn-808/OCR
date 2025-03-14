@@ -59,8 +59,10 @@ tts_language = st.selectbox(
     "Select Text To Speech Language", 
     list(tts_languages.keys())
 )
-
-enable_autocorrect = True
+if ocr_languages[ocr_language] == "eng":
+    enable_autocorrect = True
+else:
+    enable_autocorrect = False
 image_file = st.camera_input("Take a photo to detect text")
 
 if image_file is not None:
