@@ -68,7 +68,6 @@ if image_file is not None:
     with open(temp_filename, "wb") as f:
         f.write(image_file.getvalue())
     
-
     with st.spinner("Extracting text..."):
         result = ocr_space_file(temp_filename, overlay=False, language=ocr_languages[ocr_language])
     
@@ -77,25 +76,24 @@ if image_file is not None:
         
         if extracted_text.strip():
             st.subheader("Extracted Text:")
+            if enable_autocorrect:
+                extracted_text = autocorrect_text(extracted_text)
+
             st.text_area("", extracted_text, height=200)
             
-
             tts = gTTS(text=extracted_text, lang=tts_languages[tts_language])
             audio_file = "output.mp3"
             tts.save(audio_file)
             
-
             st.audio(audio_file, format="audio/mp3")
             
-
             with open(audio_file, "rb") as f:
                 st.download_button("Download Audio", f, file_name="speech.mp3", mime="audio/mp3")
             
-
             os.remove(audio_file)
             os.remove(temp_filename)
         else:
-            st.error("No text found in the image, sorry")
+            st.error("No text found in the image.")
     else:
         st.error("Error processing image. Try again.")
         st.json(result)
