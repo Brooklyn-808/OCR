@@ -3,6 +3,7 @@ import requests
 from gtts import gTTS
 import os
 from dotenv import load_dotenv
+from textblob import TextBlob
 
 load_dotenv()
 OCR_API_KE = os.getenv("OCR_SPACE_API_KEY")
