@@ -4,3 +4,4 @@ gtts
 opencv-python
 streamlit-webrtc
 python-dotenv
+textblob
