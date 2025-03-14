@@ -24,7 +24,9 @@ tts_languages = {
     "Chinese (Simplified)": "zh",
     "Chinese (Traditional)": "zh-tw"
 }
-
+def autocorrect_text(text):
+    corrected = TextBlob(text).correct()
+    return str(corrected)
 
 def ocr_space_file(filename, overlay=False, language='eng'):
     payload = {
