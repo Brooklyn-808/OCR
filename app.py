@@ -60,7 +60,7 @@ tts_language = st.selectbox(
     list(tts_languages.keys())
 )
 
-
+enable_autocorrect = True
 image_file = st.camera_input("Take a photo to detect text")
 
 if image_file is not None:
